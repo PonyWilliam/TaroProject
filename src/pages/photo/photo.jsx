@@ -9,7 +9,8 @@ export default class Mine extends Component {
         super(...arguments)
         this.state = {
             files:[],
-            add:true
+            add:true,
+            finsh:false
         }
       }
   config = {
@@ -25,19 +26,50 @@ export default class Mine extends Component {
   back(){
     
   }
-  watchad(){
+  watchad = (url)=>{
+    let that = this
     let videoAd = Taro.createRewardedVideoAd({
       adUnitId: '8e5baedff36bc1d33aa201d133c2d261'
     })
     videoAd.onError(function(res){
-      console.log('videoAd onError',res)
-      return false
+      
     })
     videoAd.onLoad(function(res){
-      console.log('videoAd onLoad',res)
     })
     videoAd.onClose(function(res){
-      return res.isEnded;
+      console.log(res)
+      if(res.isEnded){
+        Taro.getFileSystemManager().readFile({
+          filePath:that.state.files[0].url,
+          encoding:"base64",
+          success:res=>{
+            console.log(res)
+            Taro.request({
+              url:'https://zjz.market.alicloudapi.com/api/cut_check_pic',
+              method:'GET',
+              header:{
+                "Authorization":"APPCODE 73fb5aa43a784e6e8b4aab05947ad6df",
+                "Content-Type":"application/x-www-form-urlencoded; charset=UTF-8"
+               },
+               data:{
+                spec_id:'1',
+                file:res.data
+               },
+               success:(res)=>{
+                 console.log(res)
+               }
+            })
+          }
+        })
+        
+
+        
+      }else{
+        that.setState({
+          files:[],
+          add:true
+        })
+      }
     })
     
     videoAd.load()
@@ -81,20 +113,34 @@ export default class Mine extends Component {
         console.log(info)
           //上传完成，获取url
           let url = 'https://qq-1257689370.cos.ap-guangzhou.myqcloud.com/test/'+filename
-               
-        }
-    }, function (err, data) {
-        console.log('1234',err,data)
-        Taro.request({
-          url:this.state.files[0].url,
-          success:res=>{
-            console.log(res)
+          if(info.percent == 1){
+            that.test(url)
+            
           }
-        })
+        }
     });
   }
-  test(){
-    console.log(1)
+  test = (url)=>{
+    let temp = false
+    let that = this
+    Taro.hideLoading()
+    Taro.showModal({
+      title:'提示',
+      content:'生成证件照需要观看15秒广告，是否观看',
+      success:function(res){
+        that.setState({
+          finsh:false
+        })
+        if(res.confirm){
+          temp = that.watchad(url)
+        }else{
+          that.setState({
+            files:[],
+            add:true
+          })
+        }
+      }
+    })
   }
   onChange (files) {
     this.setState({

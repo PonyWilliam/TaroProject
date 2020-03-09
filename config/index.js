@@ -27,7 +27,7 @@ const config = {
   },
   mini: {
     compile: {
-      exclude:[] // 忽略的文件位置数组
+      exclude:['/src/components/cos/cos.js'] // 忽略的文件位置数组
     },
     postcss: {
       pxtransform: {
