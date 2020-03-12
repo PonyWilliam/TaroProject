@@ -10,21 +10,20 @@ export default class Mine extends Component {
         this.state = {
             files:[],
             add:true,
-            finsh:false
+            finsh:false,
+            download:false,
+            downurl:''
         }
       }
   config = {
     navigationBarTitleText: '证件照生成',
 
   }
-  qqad(test){
-
-  }
   user(){
       
   }
   back(){
-    
+    Taro.navigateBack()
   }
   watchad = (url)=>{
     let that = this
@@ -39,6 +38,9 @@ export default class Mine extends Component {
     videoAd.onClose(function(res){
       console.log(res)
       if(res.isEnded){
+        Taro.showLoading({
+          title:'制作中'
+        })
         Taro.getFileSystemManager().readFile({
           filePath:that.state.files[0].url,
           encoding:"base64",
@@ -46,17 +48,45 @@ export default class Mine extends Component {
             console.log(res)
             Taro.request({
               url:'https://zjz.market.alicloudapi.com/api/cut_check_pic',
-              method:'GET',
+              method:'POST',
               header:{
                 "Authorization":"APPCODE 73fb5aa43a784e6e8b4aab05947ad6df",
-                "Content-Type":"application/x-www-form-urlencoded; charset=UTF-8"
+                "Content-Type":"application/json; charset=UTF-8"
                },
                data:{
-                spec_id:'1',
+                spec_id:1,
                 file:res.data
                },
                success:(res)=>{
                  console.log(res)
+                 if(res.data.code == "507"){
+                    that.setState({
+                      files:[]
+                    })
+                    Taro.showModal({
+                      title:"错误",
+                      content:"您上传的图片不符合标准"
+                    })
+                 }else if(res.data.code=="200"){
+                    console.log(res.data.result)
+                    let url = res.data.result.file_name_wm[0]
+                    url = url.replace(/https/g,'http')
+                    console.log(url)
+                    that.setState({
+                      downurl:res.data.result.file_name_wm[0],
+                      download:true//显示可下载
+                    })
+
+                 }else{
+                  that.setState({
+                    files:[]
+                  })
+                  Taro.showModal({
+                    title:"错误",
+                    content:"其它错误，请联系作者"
+                  })
+                 }
+                 Taro.hideLoading()
                }
             })
           }
@@ -80,10 +110,16 @@ export default class Mine extends Component {
         })
         .catch(err => {
           console.log('激励视频 广告显示失败')
+          Taro.showToast({
+            title:'广告显示失败'
+          })
         })
       })
       .catch(err => {
         console.log('激励视频加载失败');
+        Taro.showToast({
+          title:'广告加载失败'
+        })
       })
   }
   submit(e){
@@ -157,6 +193,49 @@ export default class Mine extends Component {
         }
     })
   }
+  download(){
+    if(this.state.downurl==''||this.state.download==false){
+      Taro.showModal({
+        title:'错误',
+        content:'无法获取下载链接，请联系开发者.'
+        
+      })
+    }else{
+      Taro.showLoading({
+        title:'下载中'
+      })
+      Taro.downloadFile({
+        url:this.state.downurl,
+        success:(res)=>{
+          console.log(res)
+          Taro.hideLoading()
+          if(res.tempFilePath){//临时存储目录
+            Taro.saveFile({
+              tempFilePath:res.tempFilePath,
+              success:res=>{
+                console.log(res)
+                Taro.showToast({
+                  title:'已保存到相册',
+                  duration:2000,
+                  mask:true
+                })
+              }
+            })
+            
+          }else{
+            Taro.showToast({
+              title:"无法保存"
+            })
+          }
+        }
+      })
+    }
+  }
+  pay(){
+    Taro.showToast({
+      title:'暂未开放'
+    })
+  }
   onFail (mes) {
     console.log(mes)
   }
@@ -165,10 +244,34 @@ export default class Mine extends Component {
   }
   render () {
       let button = null
+      let result = null
       if(this.state.add == false){
-          button = <AtButton type='primary' size="small" circle onClick={this.submit.bind(this)}>提交</AtButton>
+          button = <View className="submit"><AtButton type='primary' size="normal" circle onClick={this.submit.bind(this)}>提交</AtButton></View>
       }else{
           button = <View></View>
+      }
+      if(this.state.download == true){
+        result = <View className="result">
+          <View className="download">
+            <View className="button">
+              <AtButton type="secondary" circle onClick={this.download.bind(this)}>
+                下载
+              </AtButton>
+            </View>
+            <View className="button">
+              <AtButton type="secondary" circle onClick={this.pay.bind(this)}>
+                下载无水印
+              </AtButton>
+            </View>
+          </View>
+          <Text className="preview">结果预览</Text>
+          <Image src={this.state.downurl}></Image>
+          
+        </View>
+      }else{s
+        result = <View className="result">
+            123
+        </View>
       }
     return (
         <View className = "photo">
@@ -176,7 +279,7 @@ export default class Mine extends Component {
             onClickRgIconSt={this.user}
             onClickLeftIcon={this.back}
             color='#000'
-            title='NavBar 导航栏示例'
+            title='证件照制作'
             leftText='返回'
             rightFirstIconType='user'
             />
@@ -192,6 +295,7 @@ export default class Mine extends Component {
             onImageClick={this.onImageClick.bind(this)}
             />
             {button}
+            {result}
         </View>
     )
   }

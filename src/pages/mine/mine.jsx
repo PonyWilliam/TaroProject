@@ -9,6 +9,9 @@ export default class Index extends Component {
       current:2
     }
   }
+  componentWillMount(){
+    
+  }
   handleClick(value){
     if(value==1){
       Taro.navigateTo({
@@ -21,7 +24,7 @@ export default class Index extends Component {
     }
   }
   render () {
-    const numbers = [...Array(100).keys()]//0,1,2,3,4,5...,100
+    
     return (
       <View>
        <AtTabBar

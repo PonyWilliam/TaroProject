@@ -1,0 +1,26 @@
+.chouqian{
+    
+}
+.chouqian .button{
+    position: fixed;
+    padding:30px;
+    border-radius: 100%;
+    background:linear-gradient(#333,#666);
+    color:white;
+    width:200px;
+    height:200px;
+    top:calc(50% - 130px);
+    left:calc(50% - 100px);
+    text-align: center;
+    line-height:130px;
+    box-shadow: 10px 5px 8px skyblue,
+    -10px -5px 8px skyblue,
+    10px -5px 8px papayawhip,
+    10px 5px 8px papayawhip;
+    letter-spacing: 8px;
+}
+.card{
+    text-align: center;
+    margin-bottom: 60px;
+    margin-top:30px;
+}

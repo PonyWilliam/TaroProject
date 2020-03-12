@@ -28,6 +28,7 @@ class App extends Component {
       'pages/tools/express/express',
       "pages/tools/weather/weather",
       "pages/tools/weizhang/weizhang",
+      "pages/tools/chouqian/chouqian",
       "pages/photo/photo"
     ],
     window: {

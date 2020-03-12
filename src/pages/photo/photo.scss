@@ -1,0 +1,25 @@
+.result{
+    width:90%;
+    margin-left:5%;
+    padding:15px 0;
+    margin-top:25px;
+}
+.result .download{
+    width:100%;
+}
+.result .download .button{
+    display: inline-block;
+    width:40%;
+    margin-left:7.5%;
+}
+.result .preview{
+    text-align: center;
+    display: block;
+    margin-top:30px;
+    font-size:2rem;
+}
+.submit{
+    width:80%;
+    margin-left:10%;
+    overflow: hidden;
+}

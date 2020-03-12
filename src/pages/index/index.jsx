@@ -67,12 +67,13 @@ export default class Index extends Component {
       })
     }else if(index == 3){
       //证件照
-      console.log('hello?')
       Taro.navigateTo({
         url:"/pages/photo/photo"
       })
     }else if(index == 4){
-      
+      Taro.navigateTo({
+        url:"/pages/tools/chouqian/chouqian"
+      })
     }else{
       Taro.request({
         url:'https://qq-1257689370.cos.ap-guangzhou.myqcloud.com/test/1.html',
