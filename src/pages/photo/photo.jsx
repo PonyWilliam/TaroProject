@@ -302,6 +302,8 @@ export default class Mine extends Component {
             />
             {button}
             {result}
+
+            <ad unit-id="e3408ab24974615e792103134bee9187"></ad>
         </View>
     )
   }

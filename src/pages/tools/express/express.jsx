@@ -106,19 +106,7 @@ export default class Mine extends Component {
     })
     return (
         <View className = "express">
-            <View className="form">
-            <AtSearchBar
-              placeholder = "请输入快递单号"
-              className="number"
-              actionName='查询'
-              value={this.state.value}
-              onChange={this.handleChange.bind(this)}
-              onActionClick={this.Getreq.bind(this)}
-            />
-            </View>
-            <View className="result">
-              {test}
-            </View>
+            
           <AtCard
             note='小伟王'
             extra=''
@@ -152,6 +140,23 @@ export default class Mine extends Component {
             />
           </AtList>
         </AtAccordion>
+        <View className="form">
+            <AtSearchBar
+              placeholder = "请输入快递单号"
+              className="number"
+              actionName='查询'
+              value={this.state.value}
+              onChange={this.handleChange.bind(this)}
+              onActionClick={this.Getreq.bind(this)}
+            />
+            </View>
+            <View className="result">
+              {test}
+            </View>
+
+            <ad unit-id="445c1b303735c7de5be189fae33f8408"></ad>
+            <ad unit-id="ee1cee38cef063fb52a57f5f9eb25425" type="card"></ad>
+            <ad unit-id="56b7cba030861486cefda1fb9eb03339"></ad>
         </View>
     )
   }

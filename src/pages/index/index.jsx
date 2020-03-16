@@ -93,6 +93,7 @@ export default class Index extends Component {
     return (
       <View>
         <AtFloatLayout isOpened={this.state.joke}  onClose={this.closejoke.bind(this)} title="笑话大全">
+          
           <AtButton type="primary" size="small" onClick={this.reflash}>换一个</AtButton>
           {this.state.jokecontent[this.state.random].text}
         </AtFloatLayout>
