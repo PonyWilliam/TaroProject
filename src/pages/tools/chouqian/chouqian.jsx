@@ -3,6 +3,7 @@ import { View, Button } from '@tarojs/components'
 import {AtCard,AtSearchBar,AtAccordion,AtList, AtListItem,AtButton } from 'taro-ui'
 import './chouqian.scss'
 export default class Mine extends Component {
+    
     constructor () {
         super(...arguments)
         this.state = {
@@ -11,6 +12,8 @@ export default class Mine extends Component {
             haveresult:false,
             result:{title:'',content:'',extract:''}
         }
+      }
+      componentWillMount(){
         let date = new Date()
         let time = date.getFullYear()+date.getMonth+date.getDate()
         let that = this
@@ -72,7 +75,6 @@ export default class Mine extends Component {
                 }
             }
         })
-        
       }
   config = {
     navigationBarTitleText: '抽签'

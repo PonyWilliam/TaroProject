@@ -210,14 +210,20 @@ export default class Mine extends Component {
           console.log(res)
           Taro.hideLoading()
           if(res.tempFilePath){//临时存储目录
-            Taro.saveFile({
-              tempFilePath:res.tempFilePath,
+            Taro.saveImageToPhotosAlbum({
+              filePath:res.tempFilePath,
               success:res=>{
                 console.log(res)
                 Taro.showToast({
-                  title:'已保存到相册',
-                  duration:2000,
-                  mask:true
+                  title:"保存成功",
+                  duration:2000
+                })
+              },
+              fail:res=>{
+                console.log(res)
+                Taro.showToast({
+                  title:'保存失败',
+                  icon:"none"
                 })
               }
             })
@@ -268,9 +274,9 @@ export default class Mine extends Component {
           <Image src={this.state.downurl}></Image>
           
         </View>
-      }else{s
+      }else{
         result = <View className="result">
-            123
+            
         </View>
       }
     return (

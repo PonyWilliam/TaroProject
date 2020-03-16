@@ -1,16 +1,33 @@
 import Taro, { Component,Config } from '@tarojs/taro'
 import { View, Text,Swiper, SwiperItem } from '@tarojs/components'
-import {AtButton,AtTabBar,AtGrid} from 'taro-ui'
+import {AtListItem,AtTabBar, AtButton} from 'taro-ui'
 import './mine.scss'
 export default class Index extends Component {
   constructor () {
     super(...arguments)
     this.state = {
-      current:2
+      current:2,
+      can:false,
     }
   }
+  
+  config = {
+    navigationBarTitleText:'我的'
+  }
   componentWillMount(){
-    
+    Taro.getSetting({
+      success:res=>{
+        if(res.authSetting['scope.userInfo']){
+          this.setState({
+            can:true
+          })
+        }else{
+          this.setState({
+            can:false
+          })
+        }
+      }
+    })
   }
   handleClick(value){
     if(value==1){
@@ -23,10 +40,40 @@ export default class Index extends Component {
       })
     }
   }
+  getUser(e){
+    console.log(e.detail.userInfo)
+    if(e.detail.userInfo){
+      //成功获取信息
+      Taro.login({
+        success:res=>console.log(res)
+      })
+      this.setState({
+        can:true
+      })
+    }
+  }
   render () {
+    let login = null
     
+    if(!this.state.can){
+      login = <View class="login">
+        <Button openType="getUserInfo" onGetUserInfo={this.getUser.bind(this)} circle>
+          授权登录
+        </Button>
+        </View>
+    }else{
+      login = <View></View>
+    }
     return (
       <View>
+      {login}
+      <AtList>
+        <AtListItem title='昵称' arrow='right' onClick={this.handleClick}/>
+        <AtListItem title='签名' arrow='right' />
+        <AtListItem title='头像' arrow='right' thumb="" />
+        <AtListItem title='个人说明' arrow="right" />
+      </AtList>
+
        <AtTabBar
           fixed
           tabList={[

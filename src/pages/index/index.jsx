@@ -75,13 +75,7 @@ export default class Index extends Component {
         url:"/pages/tools/chouqian/chouqian"
       })
     }else{
-      Taro.request({
-        url:'https://qq-1257689370.cos.ap-guangzhou.myqcloud.com/test/1.html',
-        method:'get',
-        success:(res)=>{
-          console.log(res)
-        }
-      })
+      
     }
   }
   closejoke = ()=>{
@@ -153,6 +147,7 @@ export default class Index extends Component {
     }
   ]
 } />
+      <ad unit-id="bb5f38bc59fd661653e483291ff90a82"></ad>
        <AtTabBar
           fixed
           tabList={[
@@ -163,6 +158,7 @@ export default class Index extends Component {
           onClick={this.handleClick.bind(this)}
           current={this.state.current}
         />
+
       </View>
     )
   }

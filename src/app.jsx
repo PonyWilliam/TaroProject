@@ -31,6 +31,11 @@ class App extends Component {
       "pages/tools/chouqian/chouqian",
       "pages/photo/photo"
     ],
+    permission: {
+      "scope.userLocation": {
+        "desc": "您的位置信息将用于天气查询"
+      }
+    },
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
