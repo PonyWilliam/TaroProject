@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Button } from '@tarojs/components'
 import {AtCard,AtSearchBar,AtAccordion,AtList, AtListItem,AtButton } from 'taro-ui'
+import {ClAnimation} from 'mp-colorui'
 import './chouqian.scss'
 export default class Mine extends Component {
     
@@ -149,7 +150,9 @@ export default class Mine extends Component {
     let res = null
     let content = null
     if(this.state.showbutton){
-        button = <Button className="button" onClick={this.chou.bind(this)}>抽签</Button> 
+        
+        button = 
+            <Button className="button" onClick={this.chou.bind(this)}>抽签</Button> 
     }else{
         button = <View></View>
     }
@@ -166,12 +169,14 @@ export default class Mine extends Component {
     }
     if(this.state.haveresult){
         content = 
-        <AtCard className="card"
+        <ClAnimation type="scale-top" delay={0} duration={0.3}>
+        <AtCard className="card" 
         title={this.state.result.title}
         thumb='http://www.logoquan.com/upload/list/20180421/logoquan15259400209.PNG'
         >
             {this.state.result.content}
         </AtCard>
+        </ClAnimation>
 
     }
     return (
@@ -179,7 +184,9 @@ export default class Mine extends Component {
             {button}
             {res}
             {content}
+            <ClAnimation type="scale-down" duration={0.4} delay={0.3}>
             <ad unit-id="bb5f38bc59fd661653e483291ff90a82"></ad>
+            </ClAnimation>
         </View>
     )
   }

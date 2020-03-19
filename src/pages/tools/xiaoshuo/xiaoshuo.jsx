@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import {AtCard,AtSearchBar,AtAccordion,AtList, AtListItem,AtButton } from 'taro-ui'
-import './weizhang.scss'
+import { ClButton  } from "mp-colorui";
+import './xiaoshuo.scss'
 export default class Mine extends Component {
     constructor () {
         super(...arguments)
@@ -14,8 +14,8 @@ export default class Mine extends Component {
 
   render () {
     return (
-        <View className = "weizhang">
-            
+        <View className = "xiaoshuo">
+          <ClButton>123</ClButton>
         </View>
     )
   }

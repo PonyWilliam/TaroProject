@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtImagePicker,AtNavBar,AtNoticebar, AtButton  } from 'taro-ui'
+import {ClAnimation} from 'mp-colorui'
 import './photo.scss'
 var COS = require('../../components/cos/cos')
 var show = require('../../components/qqad/qqad')
@@ -280,15 +281,9 @@ export default class Mine extends Component {
         </View>
       }
     return (
+        
         <View className = "photo">
-            <AtNavBar
-            onClickRgIconSt={this.user}
-            onClickLeftIcon={this.back}
-            color='#000'
-            title='证件照制作'
-            leftText='返回'
-            rightFirstIconType='user'
-            />
+          <ClAnimation type="slide-top" delay={0} duration={0.6}>
             <AtNoticebar icon='volume-plus' marquee>
                 证件照上传后可以得到一个返回的图片存储到手机。存储到手机需要观看一定时长的广告。
             </AtNoticebar>
@@ -304,6 +299,7 @@ export default class Mine extends Component {
             {result}
 
             <ad unit-id="e3408ab24974615e792103134bee9187"></ad>
+            </ClAnimation>
         </View>
     )
   }

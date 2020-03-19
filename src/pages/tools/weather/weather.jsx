@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View ,Image} from '@tarojs/components'
 import {AtCard,AtSearchBar,AtAccordion,AtList, AtListItem,AtButton } from 'taro-ui'
 import './weather.scss'
+import { ClAnimation } from 'mp-colorui'
 export default class Mine extends Component {
     constructor () {
         super(...arguments)
@@ -97,11 +98,18 @@ export default class Mine extends Component {
       }
     return (
         <View className = "weather">
+            <ClAnimation type="scale-up" duration={0.6}>
             <View className="location">{area}</View>
             <View className="temp">{temp}°C</View>
+            </ClAnimation>
+            
             <View className="recent">
+            <ClAnimation type="scale-down" duration={0.4} delay={0.5}>
+            
                 {weather}
+                </ClAnimation>
             </View>
+           
         </View>
     )
   }

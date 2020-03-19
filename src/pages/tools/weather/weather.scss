@@ -3,7 +3,8 @@
     height:100%;
     position: fixed;
     overflow: hidden;
-    background:url('http://pic1.win4000.com/mobile/2020-03-04/5e5f4d5209615.jpg');
+    background:url('https://qq-1257689370.cos.ap-guangzhou.myqcloud.com/tianqi/background.jpg') fixed center no-repeat;
+    background-size: cover;
 }
 .location{
     position: relative;
@@ -26,6 +27,8 @@
     left:calc(10% - 18px);
     background:rgba($color: #ffffff, $alpha: 0.8);
     bottom:10%;
+    box-sizing: none;
+    border-radius: 25px;
 }
 .recent .block{
     width:calc(20% - 20px);

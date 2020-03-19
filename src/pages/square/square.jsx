@@ -2,12 +2,16 @@ import Taro, { Component,Config } from '@tarojs/taro'
 import { View, Text,Swiper, SwiperItem } from '@tarojs/components'
 import {AtButton,AtTabBar,AtGrid} from 'taro-ui'
 import './square.scss'
+import Skeleton from 'taro-skeleton'
 export default class Index extends Component {
   constructor () {
     super(...arguments)
     this.state = {
       current:1
     }
+  }
+  config={
+    navigationBarTitleText:"广场"
   }
   handleClick(value){
     if(value==0){
@@ -24,6 +28,8 @@ export default class Index extends Component {
     const numbers = [...Array(100).keys()]//0,1,2,3,4,5...,100
     return (
       <View>
+        <Skeleton title avatar row={3} />
+
        <AtTabBar
           fixed
           tabList={[

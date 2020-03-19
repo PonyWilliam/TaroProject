@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import {AtCard,AtSearchBar,AtAccordion,AtList, AtListItem,AtButton } from 'taro-ui'
+import {AtCard,AtSearchBar,AtAccordion,AtList, AtListItem } from 'taro-ui'
+import {ClAnimation} from 'mp-colorui'
 import './express.scss'
 export default class Mine extends Component {
     constructor () {
@@ -106,7 +107,7 @@ export default class Mine extends Component {
     })
     return (
         <View className = "express">
-            
+          <ClAnimation type="scale-up" duration={0.5}>
           <AtCard
             note='小伟王'
             extra=''
@@ -114,13 +115,14 @@ export default class Mine extends Component {
           >
             快递查询功能支持110种快递公司单号，目前不是很完善，希望大家可以理解！
           </AtCard>
-
-
+          </ClAnimation>
+          <ClAnimation type="scale-down" duration={0.6} delay={0.4}>
             <AtAccordion
           open={this.state.open}
           onClick={this.handleClick.bind(this)}
           title='支持的快递列表'
         >
+          
           {this.state.content}
           <AtList hasBorder={false}>
             <AtListItem
@@ -128,6 +130,7 @@ export default class Mine extends Component {
               arrow='right'
               thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'
             />
+            
             <AtListItem
               title='中通快递'
               arrow='right'
@@ -150,13 +153,13 @@ export default class Mine extends Component {
               onActionClick={this.Getreq.bind(this)}
             />
             </View>
+            </ClAnimation>
             <View className="result">
               {test}
             </View>
-
-            <ad unit-id="445c1b303735c7de5be189fae33f8408"></ad>
+            <ClAnimation type="scale-down" duration={0.4} delay={0.8}>
             <ad unit-id="ee1cee38cef063fb52a57f5f9eb25425" type="card"></ad>
-            <ad unit-id="56b7cba030861486cefda1fb9eb03339"></ad>
+            </ClAnimation>
         </View>
     )
   }

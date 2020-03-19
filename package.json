@@ -43,8 +43,10 @@
     "@tarojs/taro-weapp": "2.0.5",
     "cos-js-sdk-v5": "^0.5.23",
     "cos-wx-sdk-v5": "^0.7.9",
+    "mp-colorui": "^0.6.11",
     "nerv-devtools": "^1.5.5",
     "nervjs": "^1.5.5",
+    "taro-skeleton": "^1.0.13",
     "taro-ui": "^2.3.0"
   },
   "devDependencies": {

@@ -1,7 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
 import Index from './pages/index'
 import Mine from './pages/mine'
-import 'taro-ui/dist/style/index.scss'
+import 'taro-ui/dist/style/index.scss'//taro-ui
+import "mp-colorui/dist/style/index.scss";//color-ui
 import './app.scss'
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -25,11 +26,13 @@ class App extends Component {
       "pages/square/square",
       'pages/mine/mine',
       "pages/qd/qd",
+      "pages/photo/photo",
       'pages/tools/express/express',
       "pages/tools/weather/weather",
       "pages/tools/weizhang/weizhang",
       "pages/tools/chouqian/chouqian",
-      "pages/photo/photo"
+      "pages/tools/xiaoshuo/xiaoshuo",
+      "pages/tools/history/history"
     ],
     permission: {
       "scope.userLocation": {

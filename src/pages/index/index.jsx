@@ -1,6 +1,7 @@
 import Taro, { Component,Config } from '@tarojs/taro'
 import { View, Text,Swiper, SwiperItem,Image } from '@tarojs/components'
 import {AtButton,AtTabBar,AtGrid,AtFloatLayout } from 'taro-ui'
+import {ClSwiper,ClAnimation} from 'mp-colorui'
 import './index.scss'
 export default class Index extends Component {
   constructor () {
@@ -74,8 +75,19 @@ export default class Index extends Component {
       Taro.navigateTo({
         url:"/pages/tools/chouqian/chouqian"
       })
+    }else if(index ==5){
+      //第5个小说，测试中
+      Taro.navigateTo({
+        url:'/pages/tools/xiaoshuo/xiaoshuo'
+      })
+    }else if(index == 6){
+      Taro.navigateTo({
+        url:'/pages/tools/history/history'
+      })
+    }else if(index == 7){
+      //查成绩
     }else{
-      
+      //查违章
     }
   }
   closejoke = ()=>{
@@ -90,36 +102,34 @@ export default class Index extends Component {
   }
   render () {
     //title={this.state.jokecontent[this.state.random].text}
+    let fileList = [
+      {
+        url: 'https://qq-1257689370.cos.ap-guangzhou.myqcloud.com/index/222.jpg',
+        type: 'image',
+      },{
+        url: 'https://qq-1257689370.cos.ap-guangzhou.myqcloud.com/index/111.jpg',
+        type: 'image',
+      },{
+        url: 'https://qq-1257689370.cos.ap-guangzhou.myqcloud.com/index/333.jpg',
+        type: 'image',
+      },{
+        url: 'https://qq-1257689370.cos.ap-guangzhou.myqcloud.com/index/444.jpg',
+        type: 'image',
+      }
+    ]
     return (
       <View>
         <AtFloatLayout isOpened={this.state.joke}  onClose={this.closejoke.bind(this)} title="笑话大全">
-          
+          <ad unit-id="56b7cba030861486cefda1fb9eb03339"></ad>
           <AtButton type="primary" size="small" onClick={this.reflash}>换一个</AtButton>
           {this.state.jokecontent[this.state.random].text}
         </AtFloatLayout>
-       <Swiper
-        className='swipe1'
-        indicatorColor='#999'
-        indicatorActiveColor='#333'
-        circular
-        indicatorDots
-        autoplay>
-        <SwiperItem>
-          <View className='demo-text-1' className="swiper_image">
-          <Image className="" src="https://img11.360buyimg.com/babel/s700x360_jfs/t1/4776/39/2280/143162/5b9642a5E83bcda10/d93064343eb12276.jpg!q90!cc_350x180"></Image>
-          </View>
-        </SwiperItem>
-        <SwiperItem>
-          <View className='demo-text-2' className="swiper_image">
-          <Image src="https://img11.360buyimg.com/babel/s700x360_jfs/t1/4776/39/2280/143162/5b9642a5E83bcda10/d93064343eb12276.jpg!q90!cc_350x180"></Image>
-          </View>
-        </SwiperItem>
-        <SwiperItem>
-          <View className='demo-text-3' className="swiper_image">
-            <Image src="https://img11.360buyimg.com/babel/s700x360_jfs/t1/4776/39/2280/143162/5b9642a5E83bcda10/d93064343eb12276.jpg!q90!cc_350x180"></Image>
-          </View>
-        </SwiperItem>
-      </Swiper>
+        <ClAnimation type="scale-up" delay={0.2} duration={0.8}>
+        <ClSwiper type='card' list={fileList} circular autoplay={true}/>
+        </ClAnimation>
+        <ClAnimation type="scale-up" delay={0.8} duration={1}>
+
+        
       <AtGrid onClick={this.test.bind(this)} data={
   [
     {
@@ -144,11 +154,25 @@ export default class Index extends Component {
     },
     {
       image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
+      value: '看小说'
+    },
+    {
+      image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png',
+      value: '看历史'
+    },
+    {
+      image: 'https://img14.360buyimg.com/jdphoto/s72x72_jfs/t17251/336/1311038817/3177/72595a07/5ac44618Na1db7b09.png',
       value: '查成绩'
+    },
+    {
+      image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
+      value: '查违章'
     }
   ]
 } />
+    </ClAnimation>
       <ad unit-id="bb5f38bc59fd661653e483291ff90a82"></ad>
+      
        <AtTabBar
           fixed
           tabList={[
@@ -159,7 +183,6 @@ export default class Index extends Component {
           onClick={this.handleClick.bind(this)}
           current={this.state.current}
         />
-
       </View>
     )
   }
