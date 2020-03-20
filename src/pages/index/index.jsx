@@ -86,6 +86,9 @@ export default class Index extends Component {
       })
     }else if(index == 7){
       //查成绩
+      Taro.navigateTo({
+        url:'/pages/tools/rubbish/index'
+      })
     }else{
       //查违章
     }
@@ -162,11 +165,11 @@ export default class Index extends Component {
     },
     {
       image: 'https://img14.360buyimg.com/jdphoto/s72x72_jfs/t17251/336/1311038817/3177/72595a07/5ac44618Na1db7b09.png',
-      value: '查成绩'
+      value: '垃圾分类'
     },
     {
       image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
-      value: '查违章'
+      value: '听音乐'
     }
   ]
 } />

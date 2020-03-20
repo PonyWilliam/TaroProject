@@ -11,7 +11,13 @@ export default class Mine extends Component {
             load:false
         }
       }
+      componentWillUnmount(){
+          this.setState({
+              time:[]
+          })
+      }
       componentWillMount(){
+          
           Taro.request({
               method:'GET',
               url:'https://ali-todayhistory.showapi.com/today-of-history',

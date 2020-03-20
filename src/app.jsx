@@ -1,6 +1,11 @@
 import Taro, { Component } from '@tarojs/taro'
 import Index from './pages/index'
 import Mine from './pages/mine'
+
+import http from "@/utils/http";
+import "./style/style.scss";
+import TaroSdk from "./utils/wxSdk";
+
 import 'taro-ui/dist/style/index.scss'//taro-ui
 import "mp-colorui/dist/style/index.scss";//color-ui
 import './app.scss'
@@ -32,7 +37,12 @@ class App extends Component {
       "pages/tools/weizhang/weizhang",
       "pages/tools/chouqian/chouqian",
       "pages/tools/xiaoshuo/xiaoshuo",
-      "pages/tools/history/history"
+      "pages/tools/history/history",
+      "pages/tools/rubbish/index",
+      "pages/tools/search/index",
+      "pages/tools/result/index",
+      "pages/tools/detail/index"
+
     ],
     permission: {
       "scope.userLocation": {
