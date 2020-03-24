@@ -17,7 +17,10 @@ export default class Mine extends Component {
           })
       }
       componentWillMount(){
-          
+        Taro.showShareMenu({
+            showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment'],
+            withShareTicket:true
+          })
           Taro.request({
               method:'GET',
               url:'https://ali-todayhistory.showapi.com/today-of-history',

@@ -15,7 +15,11 @@ export default class Mine extends Component {
             temp:''
         }
       }
-      componentDidMount(){
+      componentWillMount(){
+        Taro.showShareMenu({
+            showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment'],
+            withShareTicket:true
+          })
         Taro.getLocation({
             type:'wgs84',
             success:(res)=>{

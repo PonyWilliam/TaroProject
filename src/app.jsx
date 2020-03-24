@@ -38,6 +38,7 @@ class App extends Component {
       "pages/tools/chouqian/chouqian",
       "pages/tools/xiaoshuo/xiaoshuo",
       "pages/tools/history/history",
+      "pages/tools/grade/grade",
       "pages/tools/rubbish/index",
       "pages/tools/search/index",
       "pages/tools/result/index",
@@ -52,7 +53,7 @@ class App extends Component {
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
+      navigationBarTitleText: '大堤生活之家',
       navigationBarTextStyle: 'black'
     }
   }

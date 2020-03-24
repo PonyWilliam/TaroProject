@@ -11,6 +11,12 @@ export default class Mine extends Component {
   config = {
     navigationBarTitleText: '小说阅读'
   }
+  componentWillMount(){
+    Taro.showShareMenu({
+      showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment'],
+      withShareTicket:true
+    })
+  }
   onSearch(val){
     console.log(val)
     
@@ -25,7 +31,7 @@ export default class Mine extends Component {
           onSearch={this.onSearch.bind(this)}
           />
         <View class="my">
-          
+           小说功能由于需要适配各种屏幕保护，将于4月下旬左右上线。
         </View>
         </View>
         

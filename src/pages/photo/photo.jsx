@@ -23,6 +23,12 @@ export default class Mine extends Component {
   user(){
       
   }
+  componentWillMount(){
+    Taro.showShareMenu({
+      showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment'],
+      withShareTicket:true
+    })
+  }
   back(){
     Taro.navigateBack()
   }

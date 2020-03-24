@@ -15,6 +15,10 @@ export default class Mine extends Component {
         }
       }
       componentWillMount(){
+        Taro.showShareMenu({
+            showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment'],
+            withShareTicket:true
+          })
         let date = new Date()
         let time = date.getFullYear()+date.getMonth+date.getDate()
         let that = this

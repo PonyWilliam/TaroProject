@@ -1,1 +1,1 @@
-export const baseUrl = "http://39.107.65.116:3000";
+export const baseUrl = "https://nc.lllui.cn/url?url=http://nc.lllui.cn:3000";

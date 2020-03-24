@@ -19,8 +19,13 @@ export default class Index extends Component {
     value: ""
   };
 
-  componentWillMount() {}
-
+  componentWillMount() {
+    Taro.showShareMenu({
+      showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment'],
+      withShareTicket:true
+    })
+  }
+    
   componentDidMount() {
     this.fetchTypes();
   }
@@ -105,8 +110,20 @@ export default class Index extends Component {
         <View className='hot-search'>
           <View className='hot-search_title'>热门搜索</View>
           <View className='hot-search_item flex flex--warp'>
+            <View onClick={this.onSearch} data-title='特朗普' className='item'>
+              特朗普
+            </View>
             <View onClick={this.onSearch} data-title='面膜' className='item'>
               面膜
+            </View>
+            <View onClick={this.onSearch} data-title='牛奶' className='item'>
+              牛奶
+            </View>
+            <View onClick={this.onSearch} data-title='猪骨' className='item'>
+              猪骨
+            </View>
+            <View onClick={this.onSearch} data-title='鸡骨' className='item'>
+              鸡骨
             </View>
           </View>
         </View>

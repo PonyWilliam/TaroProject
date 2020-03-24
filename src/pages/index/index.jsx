@@ -1,7 +1,7 @@
 import Taro, { Component,Config } from '@tarojs/taro'
 import { View, Text,Swiper, SwiperItem,Image } from '@tarojs/components'
 import {AtButton,AtTabBar,AtGrid,AtFloatLayout } from 'taro-ui'
-import {ClSwiper,ClAnimation} from 'mp-colorui'
+import {ClSwiper,ClAnimation,ClScreenDrawer,ClLayout,ClCard, ClButton} from 'mp-colorui'
 import './index.scss'
 export default class Index extends Component {
   constructor () {
@@ -11,16 +11,23 @@ export default class Index extends Component {
       joke:false,
       jokecontent:[{title:"",text:""}],
       random:0,
-      random2:0
+      random2:0,
+      showscreen:false
     }
+  }
+  componentWillMount(){
+    Taro.showShareMenu({
+      showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment'],
+      withShareTicket:true
+    })
   }
   handleClick (value) {
     if(value==1){
-      Taro.navigateTo({
+      Taro.redirectTo({
         url:'/pages/square/square'
       })
     }else if(value==2){
-      Taro.navigateTo({
+      Taro.redirectTo({
         url:'/pages/mine/mine'
       })
     }
@@ -90,8 +97,16 @@ export default class Index extends Component {
         url:'/pages/tools/rubbish/index'
       })
     }else{
-      //查违章
+      //要更多，分开
+      this.setState({
+        showscreen:true
+      })
     }
+  }
+  setshow(yes){
+    this.setState({
+      showscreen:yes
+    })
   }
   closejoke = ()=>{
     this.setState({
@@ -101,6 +116,18 @@ export default class Index extends Component {
   reflash = ()=>{
     this.setState({
       random:this.state.random+1
+    })
+  }
+  weizhang(){
+    console.log('触发成功')
+    Taro.navigateTo({
+      url:'/pages/tools/weizhang/weizhang'
+    })
+  }
+  grade = ()=>{
+
+    Taro.navigateTo({
+      url:'/pages/tools/grade/grade'
     })
   }
   render () {
@@ -120,9 +147,11 @@ export default class Index extends Component {
         type: 'image',
       }
     ]
-    return (
-      <View>
-        <AtFloatLayout isOpened={this.state.joke}  onClose={this.closejoke.bind(this)} title="笑话大全">
+    const main = <View>
+      
+      
+
+      <AtFloatLayout isOpened={this.state.joke}  onClose={this.closejoke.bind(this)} title="笑话大全">
           <ad unit-id="56b7cba030861486cefda1fb9eb03339"></ad>
           <AtButton type="primary" size="small" onClick={this.reflash}>换一个</AtButton>
           {this.state.jokecontent[this.state.random].text}
@@ -161,7 +190,7 @@ export default class Index extends Component {
     },
     {
       image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png',
-      value: '看历史'
+      value: '历史上的今天'
     },
     {
       image: 'https://img14.360buyimg.com/jdphoto/s72x72_jfs/t17251/336/1311038817/3177/72595a07/5ac44618Na1db7b09.png',
@@ -169,7 +198,7 @@ export default class Index extends Component {
     },
     {
       image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
-      value: '听音乐'
+      value: '更多功能'
     }
   ]
 } />
@@ -186,7 +215,20 @@ export default class Index extends Component {
           onClick={this.handleClick.bind(this)}
           current={this.state.current}
         />
-      </View>
+    </View>
+    const temp =   <ClLayout>
+    <ClCard onClick={this.weizhang}>
+        <ClButton onClick={this.weizhang}>违章查询</ClButton>
+    </ClCard>
+    <ClCard onClick={this.grade}>
+        <ClButton onClick={this.grade}>成绩查询</ClButton>
+    </ClCard>
+  </ClLayout>
+    return (
+      <ClScreenDrawer show={this.state.showscreen} renderPage={main} renderDrawer={temp} onHide={() => {
+        this.setshow(false)
+      }}
+      />
     )
   }
 }

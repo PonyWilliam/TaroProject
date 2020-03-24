@@ -15,6 +15,10 @@ export default class Index extends Component {
     navigationBarTitleText:'我的'
   }
   componentWillMount(){
+    Taro.showShareMenu({
+      showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment'],
+      withShareTicket:true
+    })
     Taro.getSetting({
       success:res=>{
         if(res.authSetting['scope.userInfo']){
@@ -31,11 +35,11 @@ export default class Index extends Component {
   }
   handleClick(value){
     if(value==1){
-      Taro.navigateTo({
+      Taro.redirectTo({
         url:'/pages/square/square'
       })
     }else if(value==0){
-      Taro.navigateTo({
+      Taro.redirectTo({
         url:'/pages/index/index'
       })
     }

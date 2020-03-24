@@ -13,13 +13,19 @@ export default class Index extends Component {
   config={
     navigationBarTitleText:"广场"
   }
+  componentWillMount(){
+    Taro.showShareMenu({
+      showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment'],
+      withShareTicket:true
+    })
+  }
   handleClick(value){
     if(value==0){
-      Taro.navigateTo({
+      Taro.redirectTo({
         url:'/pages/index/index'
       })
     }else if(value==2){
-      Taro.navigateTo({
+      Taro.redirectTo({
         url:'/pages/mine/mine'
       })
     }
@@ -28,8 +34,10 @@ export default class Index extends Component {
     const numbers = [...Array(100).keys()]//0,1,2,3,4,5...,100
     return (
       <View>
+        广场功能将在下个版本开放(已开发完成，正在升级服务器安全性保证用户安全)
         <Skeleton title avatar row={3} />
-
+        <Skeleton title avatar row={3} />
+        
        <AtTabBar
           fixed
           tabList={[

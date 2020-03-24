@@ -10,6 +10,10 @@ export default class Result extends Component {
     value: ""
   };
   componentWillMount() {
+    Taro.showShareMenu({
+      showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment'],
+      withShareTicket:true
+    })
     if (this.$router.params.path) {
       this.setState({
         path: this.$router.params.path

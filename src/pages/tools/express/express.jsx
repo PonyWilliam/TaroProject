@@ -13,7 +13,12 @@ export default class Mine extends Component {
           content:[]
         }
       }
-
+      componentWillMount(){
+        Taro.showShareMenu({
+          showShareItems: ['qq', 'qzone', 'wechatFriends', 'wechatMoment'],
+          withShareTicket:true
+        })
+      }
       Getreq = ()=>{
         //获取快递信息9
         
